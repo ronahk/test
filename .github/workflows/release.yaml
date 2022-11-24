@@ -34,8 +34,8 @@ jobs:
       - name: Failing step
         id: demo
         run: |
-          echo "$needs.pre_release.outputs.release_tag"
-          echo "$needs.pre_release.outputs.plugin_version"
+          echo "${{ needs.pre_release.outputs.release_tag }}"
+          echo "${{ needs.pre_release.outputs.plugin_version }}"
           exit 1
         if: ${{ needs.pre_release.outputs.release_tag != needs.pre_release.outputs.plugin_version }}
       # - name: Plugin version/Tag name Check
