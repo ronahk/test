@@ -17,12 +17,12 @@ jobs:
         id: get_plugin_version
         run: |
           echo "PLUGIN_VERSION=$(cat plugin.yaml | grep "version" | cut -d '"' -f 2)" >> $GITHUB_OUTPUT
-          echo "cat plugin.yaml | grep "version" | cut -d '"' -f 2"
+          cat plugin.yaml | grep "version" | cut -d '"' -f 2
       - name: Get tag name
         id: get_tag_name
         run: |
           echo "TAG_NAME=$(echo ${{ github.ref_name }} | cut -d 'v' -f2)" >> $GITHUB_OUTPUT
-          echo "${{ github.ref_name }} | cut -d 'v' -f2"
+          echo ${{ github.ref_name }} | cut -d 'v' -f2
     outputs:
       plugin_version: ${{ steps.get_plugin_version.outputs.PLUGIN_VERSION }}
       tag_name: ${{ steps.get_tag_name.outputs.TAG_NAME }}
