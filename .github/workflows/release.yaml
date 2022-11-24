@@ -37,7 +37,6 @@ jobs:
           echo "$needs.pre_release.outputs.release_tag"
           echo "$needs.pre_release.outputs.plugin_version"
           exit 1
-      - name: The demo step has failed
         if: ${{ needs.pre_release.outputs.release_tag != needs.pre_release.outputs.plugin_version }}
       # - name: Plugin version/Tag name Check
       #   if: needs.pre_release.outputs.release_tag != needs.pre_release.outputs.plugin_version
