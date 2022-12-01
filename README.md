@@ -1,18 +1,11 @@
 <p align="center">
-  <img src="pkg/dashboard/static/logo-readme.svg" width="200" />
+  <img src="./logo-readme.svg" width="200" />
   <br/>
 </p>
 
-The missing UI for Helm.
+<p align="center">A simplified way of working with Helm.</p>
 
-![GitHub contributors](https://img.shields.io/github/contributors/komodorio/helm-dashboard)
-[![GitHub issues](https://img.shields.io/github/issues-raw/komodorio/helm-dashboard)](https://github.com/komodorio/helm-dashboard/issues)  
-![GitHub stars](https://img.shields.io/github/stars/komodorio/helm-dashboard?style=social)  
-![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/komodorio/helm-dashboard)  
-![GitHub pull requests](https://img.shields.io/github/issues-pr/komodorio/helm-dashboard)  
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/komodorio/helm-dashboard)  
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/komodorio/helm-dashboard)  
-[![GitHub license](https://img.shields.io/github/license/komodorio/helm-dashboard)](https://github.com/komodorio/helm-dashboard)
+![GitHub contributors](https://img.shields.io/github/contributors/komodorio/helm-dashboard)[![GitHub issues](https://img.shields.io/github/issues-raw/komodorio/helm-dashboard)](https://github.com/komodorio/helm-dashboard/issues) ![GitHub stars](https://img.shields.io/github/stars/komodorio/helm-dashboard?style=social) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/komodorio/helm-dashboard) ![GitHub pull requests](https://img.shields.io/github/issues-pr/komodorio/helm-dashboard) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/komodorio/helm-dashboard) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/komodorio/helm-dashboard) [![GitHub license](https://img.shields.io/github/license/komodorio/helm-dashboard)](https://github.com/komodorio/helm-dashboard)
 
 <kbd>[<img src="screenshot.png" style="width: 100%; border: 1px solid silver;" border="1" alt="Screenshot">](screenshot.png)</kbd>
 
@@ -20,9 +13,7 @@ The missing UI for Helm.
 
 _Helm Dashboard_ is an **open-source project** which offers a UI-driven way to view the installed Helm charts, see their revision history and
 corresponding k8s resources. Also, you can perform simple actions like roll back to a revision or upgrade to newer
-version.
-
-This project is part of [Komodor's](https://komodor.com/?utm_campaign=Helm-Dash&utm_source=helm-dash-gh) vision of
+version. This project is part of [Komodor's](https://komodor.com/?utm_campaign=Helm-Dash&utm_source=helm-dash-gh) vision of
 helping Kubernetes users to navigate and troubleshoot their clusters.
 
 Some of the key capabilities of the tool:
