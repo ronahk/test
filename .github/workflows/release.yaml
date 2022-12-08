@@ -30,8 +30,8 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Success
-        run: echo "Hi"
+      - name: Failure
+        run: exit 1
 
   bump_versions:
     runs-on: ubuntu-latest
