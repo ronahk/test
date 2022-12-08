@@ -35,7 +35,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Bump helm versions
-        run: ./ci/bump-versions.sh
+        run: sh ./ci/bump-versions.sh
         env:
           APP_VERSION: ${{ needs.pre_release.outputs.release_tag }}
       - name: Test
