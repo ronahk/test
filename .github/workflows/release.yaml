@@ -27,22 +27,18 @@ jobs:
       plugin_version: ${{ steps.get_plugin_version.outputs.PLUGIN_VERSION }}
       release_tag: ${{ steps.get_tag_name.outputs.TAG_NAME }}
 
-  helm_release:
-    permissions:
-      contents: write
+  bump_versions:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
-      - name: Bump Versions
-        run: |
-          sed -i -e "s/appVersion.*/appVersion: ${{ needs.pre_release.outputs.release_tag }}/g" chart/Chart.yaml
-          CURRENT_VERSION=$(cat chart/Chart.yaml | grep 'version:' | awk '{print \$2}')
-          NEW_VERSION=$(echo $$CURRENT_VERSION | awk -F. '{\$NF = \$NF + 1;} 1' | sed 's/ /./g')
-          sed -i -e "s/$$CURRENT_VERSION/$$NEW_VERSION/g" chart/Chart.yaml
-
+      - name: Bump helm versions
+        run: ./ci/bump-versions.sh
+        env:
+          APP_VERSION: ${{ needs.pre_release.outputs.release_tag }}
       - name: Test
-        run: cat chart/Chart.yaml
+        run: |
+          cat charts/Chart.yaml
+          git status
