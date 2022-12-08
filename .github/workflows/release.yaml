@@ -2,8 +2,8 @@ name: release
 
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - main
 
 jobs:
   pre_release:
@@ -23,30 +23,26 @@ jobs:
         run: |
           echo "TAG_NAME=$(echo ${{ github.ref_name }} | cut -d 'v' -f2)" >> $GITHUB_OUTPUT
           echo "TAG_NAME=$(echo ${{ github.ref_name }} | cut -d 'v' -f2)" >> $GITHUB_ENV
-      - name: Test
-        run: |
-          echo "*************$PLUGIN_VERSION****************"
-          echo "**************$TAG_NAME**********************"
     outputs:
       plugin_version: ${{ steps.get_plugin_version.outputs.PLUGIN_VERSION }}
       release_tag: ${{ steps.get_tag_name.outputs.TAG_NAME }}
 
-  release:
-    needs: pre_release
+  helm_release:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
-      - name: Plugin version/Release tag Check
-        if: needs.pre_release.outputs.release_tag != needs.pre_release.outputs.plugin_version
-        uses: actions/github-script@v3
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          script: |
-            core.setFailed('Plugin version and tag name are not equivalent!')
-      - name: Test
+          fetch-depth: 0
+
+      - name: Bump Versions
         run: |
-          echo "Success!!!"
-      # - name: Plugin version/Tag name Check
-      #   if: needs.pre_release.outputs.release_tag != needs.pre_release.outputs.plugin_version
-      #   uses: actions/github-script@v3
-      #   with:
-      #     script: |
-      #       core.setFailed('Plugin version and tag name are not equivalent!')
+          sed -i -e "s/appVersion.*/appVersion: ${{ needs.pre_release.outputs.release_tag }}/g" chart/Chart.yaml
+          CURRENT_VERSION=$(cat chart/Chart.yaml | grep 'version:' | awk '{print \$2}')
+          NEW_VERSION=$(echo $$CURRENT_VERSION | awk -F. '{\$NF = \$NF + 1;} 1' | sed 's/ /./g')
+          sed -i -e "s/$$CURRENT_VERSION/$$NEW_VERSION/g" chart/Chart.yaml
+
+      - name: Test
+        run: cat chart/Chart.yaml
