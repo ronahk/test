@@ -68,7 +68,7 @@ jobs:
           # Email for the git commit
           user_email: "ronahk@komodor.io"
           # GitHub username for the commit
-          user_name: "ronahk"
+          user_name: "rona"
           # branch to push folder to, defaults to master
           destination_branch: "main"
           # The commit message
