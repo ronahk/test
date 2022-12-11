@@ -66,9 +66,9 @@ jobs:
           # Directory to push the folder contents to
           destination_folder: "charts/selek"
           # Email for the git commit
-          user_email: "ronahk@komodor.io"
+          user_email: "rona@komodor.io"
           # GitHub username for the commit
-          user_name: "rona"
+          user_name: "ronahk"
           # branch to push folder to, defaults to master
           destination_branch: "main"
           # The commit message
