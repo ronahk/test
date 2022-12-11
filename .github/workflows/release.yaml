@@ -27,16 +27,9 @@ jobs:
       plugin_version: ${{ steps.get_plugin_version.outputs.PLUGIN_VERSION }}
       release_tag: ${{ steps.get_tag_name.outputs.TAG_NAME }}
 
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Failure
-        run: exit 1
-
   bump_versions:
     runs-on: ubuntu-latest
-    needs: [pre_release, release]
-    if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
+    needs: pre_release
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -46,7 +39,16 @@ jobs:
         run: sh ./ci/bump-versions.sh
         env:
           APP_VERSION: ${{ needs.pre_release.outputs.plugin_version }}
-      - name: Test
-        run: |
-          cat charts/Chart.yaml
-          git status
+          HELM_CHARTS_SOURCE: "charts/selek"
+      - name: Push helm chart folder
+        uses: datalbry/copy_folder_to_another_repo_action@1.0.0
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          source_folder: "charts/selek"
+          destination_repo: "ronahk/helm-test"
+          destination_folder: "charts/selek"
+          user_email: "ronahk@komodor.io"
+          user_name: "ronahk"
+          commit_msg: "CI: Update selek helm chart"
+          destination_branch: main
