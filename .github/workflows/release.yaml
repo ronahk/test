@@ -43,7 +43,7 @@ jobs:
       - name: Push helm chart folder
         uses: datalbry/copy_folder_to_another_repo_action@1.0.0
         env:
-          API_TOKEN_GITHUB: ${{ secrets.COPY_FOLDER_SECRET }}
+          API_TOKEN_GITHUB: ${{ secrets.MY_SECRET }}
         with:
           source_folder: "charts/selek"
           destination_repo: "ronahk/helm-test"
