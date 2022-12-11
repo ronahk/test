@@ -57,7 +57,7 @@ jobs:
         # uses: crykn/copy_folder_to_another_repo_action@0282e8b9fef06de92ddcae9fe6cb44df6226646c
         uses: crykn/copy_folder_to_another_repo_action@v1.0.6
         env:
-          API_TOKEN_GITHUB: ${{ secrets.MY_SECRET }}
+          API_TOKEN_GITHUB: ${{ secrets.COPY_FOLDER_SECRET }}
         with:
           # Source folder from the origin directory
           source_folder: "charts/selek"
