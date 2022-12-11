@@ -74,4 +74,3 @@ jobs:
           # The commit message
           commit_msg: "Update helm chart"
           # Destination branch to create for this commit
-          #destination_branch_create: # optional
